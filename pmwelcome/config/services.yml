@@ -1,0 +1,13 @@
+services:
+    apwa.pmwelcome.listener:
+        class: apwa\pmwelcome\event\listener
+        arguments:
+            - '@user'
+            - '@config'
+            - '@config_text'
+            - '@dbal.conn'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%core.table_prefix%'
+        tags:
+            - { name: event.listener }
