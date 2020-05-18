@@ -76,8 +76,8 @@ class listener implements EventSubscriberInterface
 
 	/*
 	* Called after a user has finished registration. Three possible scenarios:
-	* 1. w/o activation: Data for the Usermap must be obtained here
-	* 2. and 3.: Activation by eMail confirmation or ba an administrator: Data for the Usermap will be processed within the function 'pm_activate_welcome'
+	* 1. w/o activation: Data for the welcome PM must be obtained here
+	* 2. and 3.: Activation by eMail confirmation or by an administrator: Data for the welcome PM will be processed within the function 'pm_activate_welcome'
 	* -> selection for registration w/o later activation must be done here!
 	*
 	* @param:	cp_data, data, message, server_url, user_actkey, user_id, user_row
