@@ -3,6 +3,7 @@
 *
 * @package PM Welcome
 * @copyright BB3.MOBi (c) 2015 Anvar http://apwa.ru
+* @rewritten and @copyright (c) 2020 by Mike-on-Tour
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -16,14 +17,13 @@ class pmwelcome_module
 
 	function main($id, $mode)
 	{
-		global $config, $user, $template, $request, $phpbb_container;
+		global $config, $user, $template, $request, $language, $phpbb_container;
 		global $phpbb_root_path, $phpEx;
 
-		$this->user = $user;
 		$this->tpl_name = 'acp_pmwelcome';
-		$this->page_title = 'ACP_PMWELCOME_SETTINGS';
+		$this->page_title = $language->lang('ACP_PMWELCOME_SETTINGS');
 
-		$this->user->add_lang(array('acp/board', 'posting'));
+		$user->add_lang(array('acp/board', 'posting'));
 
 		$submit = $request->is_set_post('submit');
 		$preview = $request->is_set_post('preview');
@@ -41,18 +41,18 @@ class pmwelcome_module
 		$display_vars = array(
 			'title'	=> 'ACP_PMWELCOME',
 			'vars'	=> array(
-				'legend1'	=> 'ACP_PMWELCOME_SETTINGS',
-				'pmwelcome_user'		=> array('lang' => 'ACP_PMWELCOME_USER',	'validate' => 'int:2:255',	'type' => 'number:2:255', 'explain' => true, 'append' => ' ' . $user_name),
-				'pmwelcome_subject'		=> array('lang' => 'ACP_PMWELCOME_SUBJECT',	'validate' => 'string',		'type' => 'text:50:250', 'explain' => false),
-				'pmwelcome_post_text'	=> array('lang' => 'ACP_PMWELCOME_TEXT',	'validate' => '',			'type' => 'textarea:15:30', 'explain' => true),
-
-				'legend2'	=> 'ACP_SUBMIT_CHANGES',
+				'legend1'				=> $language->lang('ACP_PMWELCOME_SETTINGS'),
+				'pmwelcome_user'		=> array('lang' => $language->lang('ACP_PMWELCOME_USER'),	'validate' => 'int:2:255',	'type' => 'number:2:255', 'explain' => true, 'append' => ' ' . $user_name),
+				'pmwelcome_subject'		=> array('lang' => $language->lang('ACP_PMWELCOME_SUBJECT'),	'validate' => 'string',		'type' => 'text:50:250', 'explain' => false),
+				'pmwelcome_post_text'	=> array('lang' => $language->lang('ACP_PMWELCOME_TEXT'),	'validate' => '',			'type' => 'textarea:15:30', 'explain' => true),
+				'legend2'				=> $language->lang('ACP_SUBMIT_CHANGES'),
 			),
 		);
 
 		if (isset($display_vars['lang']))
 		{
-			$user->add_lang($display_vars['lang']);
+			$language->lang($display_vars['lang']);
+//			$user->add_lang($display_vars['lang']);
 		}
 
 		$this->new_config = $config;
@@ -65,7 +65,7 @@ class pmwelcome_module
 
 		if ($submit && !check_form_key($form_key))
 		{
-			$error[] = $user->lang['FORM_INVALID'];
+			$error[] = $language->lang('FORM_INVALID');
 		}
 
 		// Do not write values if there is an error
@@ -123,7 +123,7 @@ class pmwelcome_module
 
 		if ($submit)
 		{
-			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
+			trigger_error($language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 		}
 
 		/* Config text Welcome Preview */
@@ -135,13 +135,21 @@ class pmwelcome_module
 			$preview_text = $pmwelcome_post_text;
 			generate_text_for_storage($preview_text, $uid, $bitfield, $flags, true, true, true);
 			$preview_text = generate_text_for_display($preview_text, $uid, $bitfield, $flags);
+			$preview_text = str_replace('{USERNAME}',$user->data['username'] ,$preview_text);
+			$preview_text = str_replace('{SITE_NAME}',$config['sitename'] ,$preview_text);
+			$preview_text = str_replace('{SITE_DESC}',$config['site_desc'] ,$preview_text);
+			$preview_text = str_replace('{USER_REGDATE}',date($user->data['user_dateformat'], $user->data['user_regdate']) ,$preview_text);
+			$preview_text = str_replace('{USER_EMAIL}',$user->data['user_email'] ,$preview_text);
+			$preview_text = str_replace('{USER_TZ}',$user->data['user_timezone'] ,$preview_text);
+			$preview_text = str_replace('{USER_LANG_LOCAL}',$user->data['user_lang'] ,$preview_text);
+			$preview_text = str_replace('{BOARD_CONTACT}',$config['board_contact'] ,$preview_text);
 		}
 
 		$this->page_title = $display_vars['title'];
 
 		$template->assign_vars(array(
-			'L_TITLE'			=> $user->lang[$display_vars['title']],
-			'L_TITLE_EXPLAIN'	=> $user->lang[$display_vars['title'] . '_EXPLAIN'],
+			'L_TITLE'			=> $language->lang($display_vars['title']),
+			'L_TITLE_EXPLAIN'	=> $language->lang($display_vars['title'] . '_EXPLAIN'),
 			'S_ERROR'			=> (sizeof($error)) ? true : false,
 			'ERROR_MSG'			=> implode('<br />', $error),
 			'POST_TEXT'			=> $pmwelcome_post_text,
@@ -161,7 +169,7 @@ class pmwelcome_module
 			{
 				$template->assign_block_vars('options', array(
 					'S_LEGEND'		=> true,
-					'LEGEND'		=> (isset($user->lang[$vars])) ? $user->lang[$vars] : $vars)
+					'LEGEND'		=> (null !== $language->lang($vars)) ? $language->lang($vars) : $vars)
 				);
 				continue;
 			}
@@ -171,11 +179,11 @@ class pmwelcome_module
 			$l_explain = '';
 			if ($vars['explain'] && isset($vars['lang_explain']))
 			{
-				$l_explain = (isset($user->lang[$vars['lang_explain']])) ? $user->lang[$vars['lang_explain']] : $vars['lang_explain'];
+				$l_explain = (null !== $language->lang($vars['lang_explain'])) ? $language->lang($vars['lang_explain']) : $vars['lang_explain'];
 			}
 			else if ($vars['explain'])
 			{
-				$l_explain = (isset($user->lang[$vars['lang'] . '_EXPLAIN'])) ? $user->lang[$vars['lang'] . '_EXPLAIN'] : '';
+				$l_explain = (null !== $language->lang($vars['lang'] . '_EXPLAIN'))? $language->lang($vars['lang'] . '_EXPLAIN') : '';
 			}
 
 			/* Get config text && Anvar */
@@ -194,7 +202,7 @@ class pmwelcome_module
 
 			$template->assign_block_vars('options', array(
 				'KEY'			=> $config_key,
-				'TITLE'			=> (isset($user->lang[$vars['lang']])) ? $user->lang[$vars['lang']] : $vars['lang'],
+				'TITLE'			=> (null !== $language->lang($vars['lang'])) ? $language->lang($vars['lang']) : $vars['lang'],
 				'S_EXPLAIN'		=> $vars['explain'],
 				'TITLE_EXPLAIN'	=> $l_explain,
 				'CONTENT'		=> $content,
@@ -220,7 +228,7 @@ class pmwelcome_module
 
 		if (!$inder_fo['username'])
 		{
-			$inder_fo['error'] = $this->user->lang['NO_USER'];
+			$inder_fo['error'] = $language->lang['NO_USER'];
 		}
 
 		return $inder_fo;

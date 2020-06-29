@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "Welcome PM for registration and activation",
     "homepage": "http://phpbbguru.net",
-    "version": "1.0.1",
-    "time": "2015-06-09",
+    "version": "1.1.0",
+    "time": "2020-07-01",
     "license": "GPL-2.0",
     "authors": [
         {
@@ -12,16 +12,22 @@
             "email": "anvar.all@mail.ru",
             "homepage": "http://bb3.mobi",
             "role": "phpBB Developer"
-        }
-    ],
+        },
+ 		{
+			"name": "Michael Vormwald",
+			"email": "webmaster@mike-on-tour.de",
+			"homepage": "https://www.mike-on-tour.com",
+			"role": "Developer ver. 1.1.0"
+		}
+   ],
     "require": {
-        "php": ">=5.3.3",
-        "phpbb/phpbb": ">=3.1.6-RC1"
+        "php": ">=5.4",
+        "phpbb/phpbb": ">=3.2"
     },
     "extra": {
         "display-name": "PM Welcome",
         "soft-require": {
-            "phpbb/phpbb": ">=3.1.6-RC1"
+            "phpbb/phpbb": ">=3.2"
         },
         "version-check": {
             "host": "www.phpbb.com",

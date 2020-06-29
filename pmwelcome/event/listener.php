@@ -3,6 +3,7 @@
 *
 * @package PM Welcome
 * @copyright (c) bb3.mobi 2014 Anvar
+* @rewritten and @copyright (c) 2020 by Mike-on-Tour
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -47,7 +48,7 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_active_flip_after'		=> 'pm_activate_welcome',		// Event after activation by admin or by email
-			'core.ucp_register_register_after'	=> 'pm_register_welcome',		// Event after registration, used to process user data for the Usermap if no activation after registration is needed
+			'core.ucp_register_register_after'	=> 'pm_register_welcome',		// Event after registration, used to process user data if no activation after registration is needed
 		);
 	}
 

@@ -1,0 +1,15 @@
+ver 1.1.0
+July 2, 2020
+-	Updated 'services.yml' to current syntax
+-	Switched ACP template to TWIG syntax
+-	Incorporated more user and system related variables to be used in the message text
+	({USER_REGDATE}, {USER_EMAIL}, {USER_TZ}, {USER_LANG_LOCAL}, {SITE_NAME}, {SITE_DESC}, {BOARD_CONTACT})
+-	Rewritten 'listener.php' with a change of events ('core.user_active_flip_after' for activation by admin or email and
+	'core.ucp_register_register_after' if no activation is necessary)
+-	Inserted a new function to display 'user_regdate' in the user's language and time zone format ('listener.php')
+-	Changed 'pmwelcome_module.php' according to changes in 'listener.php'
+-	Exchanged all $user->lang variables to $language->lang within 'pmwelcome_module.php'
+-	Adjusted de and en language packs according to the above mentioned changes
+-	Added new language pack 'de_x_sie'
+-	Inserted a new file 'version_history.txt' to document recent changes
+-	Updated 'composer.json' with current version number and added new author

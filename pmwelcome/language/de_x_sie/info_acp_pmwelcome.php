@@ -19,16 +19,16 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ACP_PMWELCOME'					=> 'Begrüßungsnachricht',
-	'ACP_PMWELCOME_EXPLAIN'			=> 'Du kannst hier den Text der PN eingeben, die einem neuen Nutzer nach der Registrierung zugesandt wird.',
+	'ACP_PMWELCOME_EXPLAIN'			=> 'Sie können hier den Text der PN eingeben, die einem neuen Nutzer nach der Registrierung zugesandt wird.',
 	'ACP_PMWELCOME_SETTINGS'		=> 'Einstellungen für die Begrüßungsnachricht',
 	'ACP_PMWELCOME_USER'			=> 'Absender',
 	'ACP_PMWELCOME_USER_EXPLAIN'	=> 'UserID desjenigen, in dessen Name die PN versandt wird.',
 	'ACP_PMWELCOME_SUBJECT'			=> 'Betreff',
 	'ACP_PMWELCOME_TEXT'			=> 'Text der Begrüßungsnachricht',
-	'ACP_PMWELCOME_TEXT_EXPLAIN'	=> 'Du kannst BBCode und Smilies, sowie folgende Platzhalter verwenden:<br>
+	'ACP_PMWELCOME_TEXT_EXPLAIN'	=> 'Sie können BBCode und Smilies, sowie folgende Platzhalter verwenden:<br>
 										{USERNAME} als Ersatz für den Namen des Empfängers der PN,
-										{SITE_NAME} für den Namen deines Boards,
-										{SITE_DESC} als Beschreibung deines Boards,
+										{SITE_NAME} für den Namen Ihres Boards,
+										{SITE_DESC} als Beschreibung Ihres Boards,
 										{USER_REGDATE} für das Registrierungsdatum des Adressaten,
 										{USER_EMAIL} für die eMail-Adresse des Adressaten,
 										{USER_TZ} für die Zeitzone des Adressaten,
