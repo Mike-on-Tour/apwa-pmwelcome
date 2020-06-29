@@ -15,7 +15,7 @@ class pmwelcome_module
 	var $u_action;
 	var $new_config = array();
 
-	function main($id, $mode)
+	function main()
 	{
 		global $config, $user, $template, $request, $language, $phpbb_container;
 		global $phpbb_root_path, $phpEx;
@@ -215,7 +215,7 @@ class pmwelcome_module
 
 	function pm_welcome_user_name($user_id)
 	{
-		global $db;
+		global $db, $language;
 
 		$inder_fo = array();
 
@@ -228,7 +228,7 @@ class pmwelcome_module
 
 		if (!$inder_fo['username'])
 		{
-			$inder_fo['error'] = $language->lang['NO_USER'];
+			$inder_fo['error'] = $language->lang('NO_USER');
 		}
 
 		return $inder_fo;

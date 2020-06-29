@@ -5,7 +5,7 @@
     "homepage": "http://phpbbguru.net",
     "version": "1.1.0",
     "time": "2020-07-01",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "Anvar",
