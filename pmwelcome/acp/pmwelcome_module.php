@@ -41,11 +41,11 @@ class pmwelcome_module
 		$display_vars = array(
 			'title'	=> 'ACP_PMWELCOME',
 			'vars'	=> array(
-				'legend1'				=> $language->lang('ACP_PMWELCOME_SETTINGS'),
-				'pmwelcome_user'		=> array('lang' => $language->lang('ACP_PMWELCOME_USER'),	'validate' => 'int:2:255',	'type' => 'number:2:255', 'explain' => true, 'append' => ' ' . $user_name),
-				'pmwelcome_subject'		=> array('lang' => $language->lang('ACP_PMWELCOME_SUBJECT'),	'validate' => 'string',		'type' => 'text:50:250', 'explain' => false),
-				'pmwelcome_post_text'	=> array('lang' => $language->lang('ACP_PMWELCOME_TEXT'),	'validate' => '',			'type' => 'textarea:15:30', 'explain' => true),
-				'legend2'				=> $language->lang('ACP_SUBMIT_CHANGES'),
+				'legend1'				=> 'ACP_PMWELCOME_SETTINGS',
+				'pmwelcome_user'		=> array('lang' => 'ACP_PMWELCOME_USER',	'validate' => 'int:2:255',	'type' => 'number:2:255', 'explain' => true, 'append' => ' ' . $user_name),
+				'pmwelcome_subject'		=> array('lang' => 'ACP_PMWELCOME_SUBJECT',	'validate' => 'string',		'type' => 'text:50:250', 'explain' => false),
+				'pmwelcome_post_text'	=> array('lang' => 'ACP_PMWELCOME_TEXT',	'validate' => '',			'type' => 'textarea:15:30', 'explain' => true),
+				'legend2'				=> 'ACP_SUBMIT_CHANGES',
 			),
 		);
 
@@ -179,11 +179,11 @@ class pmwelcome_module
 			$l_explain = '';
 			if ($vars['explain'] && isset($vars['lang_explain']))
 			{
-				$l_explain = (null !== $language->lang($vars['lang_explain'])) ? $language->lang($vars['lang_explain']) : $vars['lang_explain'];
+				$l_explain = (null !== $vars['lang_explain']) ? $language->lang($vars['lang_explain']) : $vars['lang_explain'];
 			}
 			else if ($vars['explain'])
 			{
-				$l_explain = (null !== $language->lang($vars['lang'] . '_EXPLAIN'))? $language->lang($vars['lang'] . '_EXPLAIN') : '';
+				$l_explain = (null !== $vars['lang'] . '_EXPLAIN')? $language->lang($vars['lang'] . '_EXPLAIN') : '';
 			}
 
 			/* Get config text && Anvar */
