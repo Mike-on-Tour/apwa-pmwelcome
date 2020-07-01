@@ -1,5 +1,5 @@
 ver 1.1.0
-June 30, 2020
+July 1, 2020
 -	Updated 'services.yml' to current syntax
 -	Switched ACP template to TWIG syntax
 -	Incorporated more user and system related variables to be used in the message text
@@ -13,3 +13,4 @@ June 30, 2020
 -	Added new language pack 'de_x_sie'
 -	Inserted a new file 'version_history.txt' to document recent changes
 -	Updated 'composer.json' with current version number and added new author
+-	Added a README.md file

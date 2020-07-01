@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ACP_PMWELCOME'					=> 'Begrüßungsnachricht',
-	'ACP_PMWELCOME_EXPLAIN'			=> 'Sie können hier den Text der PN eingeben, die einem neuen Nutzer nach der Registrierung zugesandt wird.',
+	'ACP_PMWELCOME_EXPLAIN'			=> 'Sie können hier den Text der PN eingeben, die einem neuen Nutzer nach der Aktivierung bzw. Registrierung zugesandt wird.',
 	'ACP_PMWELCOME_SETTINGS'		=> 'Einstellungen für die Begrüßungsnachricht',
 	'ACP_PMWELCOME_USER'			=> 'Absender',
 	'ACP_PMWELCOME_USER_EXPLAIN'	=> 'UserID desjenigen, in dessen Name die PN versandt wird.',
