@@ -1,5 +1,5 @@
 ver 1.1.0
-July 2, 2020
+June 30, 2020
 -	Updated 'services.yml' to current syntax
 -	Switched ACP template to TWIG syntax
 -	Incorporated more user and system related variables to be used in the message text
